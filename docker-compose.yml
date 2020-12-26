@@ -1,0 +1,19 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .   # indicates where to look for all the files for our application
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /usr/app/node_modules
+      - .:/usr/app/
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /usr/app/node_modules
+      - .:/usr/app/
+    command: ["npm", "run", "test"]
