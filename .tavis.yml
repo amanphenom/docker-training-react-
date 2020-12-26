@@ -1,0 +1,10 @@
+language: generic
+sudo: required        # tell travis that sudo permissions are required
+services:             # services we require to run our application   
+  - docker
+
+before_install:       # steps to execute before we start doing we want to do
+  - docker build -t masteryoda024/docker-training-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true masteryoda024/docker-training-react npm run test  
