@@ -8,4 +8,17 @@ before_install:       # steps to execute before we start doing we want to do
 
 
 script:
-  - docker run -e CI=true masteryoda024/docker-training-react npm run test  
+  - docker run -e CI=true masteryoda024/docker-training-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-south-1"
+  app: "docker"
+  env: "Docker-env-1"
+  bucket_name: "elasticbeanstalk-ap-south-1-307250593171"
+  bucket_path: "docker"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+
